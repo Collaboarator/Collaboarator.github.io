@@ -1,13 +1,22 @@
-<script type="module">
-    import { h, app } from "/scripts/hyper.js"
-    app({
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">
+      import { h, app } from "scripts/hyper.js"
+
+      app({
         init: 0,
         view: state =>
-            h("div", {}, [
-                h("h1", {}, state),
-                h("button", { onclick: state => state - 1 }, "substract"),
-                h("button", { onclick: state => state + 1 }, "add")
-            ]),
+          h("main", {}, [
+            h("h1", {}, state),
+            h("button", { onClick: state => state - 1 }, "-"),
+            h("button", { onClick: state => state + 1 }, "+")
+          ]),
         node: document.getElementById("app")
-    });
-</script>
+      })
+    </script>
+  </head>
+  <body>
+    <main id="app"></main>
+  </body>
+</html>
