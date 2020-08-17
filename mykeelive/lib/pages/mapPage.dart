@@ -17,7 +17,7 @@ class MapPageState extends State<MapPage> {
     return Scaffold(
         key: _scaffoldKey,
         appBar: null,
-        drawer: Theme(
+        drawer: IgnorePointer(child:Theme(
             data: Theme.of(context).copyWith(
               canvasColor: _darkMapStyle
                   ? HexColor.fromHex("#ffffff")
@@ -120,7 +120,7 @@ class MapPageState extends State<MapPage> {
                           ],
                         ))
                   ])
-                ]))),
+                ])))),
         body: Builder(
           builder: (context) => Stack(
             children: <Widget>[
