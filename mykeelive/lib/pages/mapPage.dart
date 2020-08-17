@@ -11,8 +11,9 @@ class MapPageState extends State<MapPage> {
   bool _darkMapStyle = true;
   String _mapStyle = darkMapStyle;
 
-  Widget getMapWithOrWithoutIgnorePointer() {
-    if (Scaffold.of(context).isDrawerOpen) {
+  Widget getMapWithOrWithoutIgnorePointer(BuildContext bc) {
+    print('isDrawerOpen = ' + Scaffold.of(bc).isDrawerOpen.toString());
+    if (Scaffold.of(bc).isDrawerOpen) {
       return IgnorePointer(
         child: Stack(
           children: <Widget>[
@@ -210,8 +211,8 @@ class MapPageState extends State<MapPage> {
                         ))
                   ])
                 ]))),
-        body:
-            Builder(builder: (context) => getMapWithOrWithoutIgnorePointer()));
+        body: Builder(
+            builder: (context) => getMapWithOrWithoutIgnorePointer(context)));
   }
 }
 
