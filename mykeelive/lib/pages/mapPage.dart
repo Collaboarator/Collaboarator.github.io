@@ -11,13 +11,102 @@ class MapPageState extends State<MapPage> {
   bool _darkMapStyle = true;
   String _mapStyle = darkMapStyle;
 
+  Widget getMapWithOrWithoutIgnorePointer() {
+    if (Scaffold.of(context).isDrawerOpen) {
+      return IgnorePointer(
+        child: Stack(
+          children: <Widget>[
+            Positioned.fill(
+              child: GoogleMap(
+                key: _key,
+                markers: {
+                  Marker(GeoCoord(34.0469058, -118.3503948)),
+                },
+                initialZoom: 12,
+                initialPosition: GeoCoord(34.0469058, -118.3503948),
+                // Los Angeles, CA
+                mapType: MapType.roadmap,
+                mapStyle: _mapStyle,
+                interactive: true,
+                onTap: (coord) {},
+                mobilePreferences: const MobileMapPreferences(
+                  trafficEnabled: true,
+                  zoomControlsEnabled: true,
+                ),
+                webPreferences: WebMapPreferences(
+                  fullscreenControl: true,
+                  zoomControl: true,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 16,
+              left: 16,
+              child: FloatingActionButton(
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                backgroundColor: _darkMapStyle ? Colors.black : Colors.white,
+                child: Icon(
+                  Icons.menu,
+                  color: _darkMapStyle ? Colors.white : Colors.black,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return Stack(
+      children: <Widget>[
+        Positioned.fill(
+          child: GoogleMap(
+            key: _key,
+            markers: {
+              Marker(GeoCoord(34.0469058, -118.3503948)),
+            },
+            initialZoom: 12,
+            initialPosition: GeoCoord(34.0469058, -118.3503948),
+            // Los Angeles, CA
+            mapType: MapType.roadmap,
+            mapStyle: _mapStyle,
+            interactive: true,
+            onTap: (coord) {},
+            mobilePreferences: const MobileMapPreferences(
+              trafficEnabled: true,
+              zoomControlsEnabled: true,
+            ),
+            webPreferences: WebMapPreferences(
+              fullscreenControl: true,
+              zoomControl: true,
+            ),
+          ),
+        ),
+        Positioned(
+          top: 16,
+          left: 16,
+          child: FloatingActionButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            backgroundColor: _darkMapStyle ? Colors.black : Colors.white,
+            child: Icon(
+              Icons.menu,
+              color: _darkMapStyle ? Colors.white : Colors.black,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Configuration config = Configuration.of(context);
     return Scaffold(
         key: _scaffoldKey,
         appBar: null,
-        drawer: IgnorePointer(child:Theme(
+        drawer: Theme(
             data: Theme.of(context).copyWith(
               canvasColor: _darkMapStyle
                   ? HexColor.fromHex("#ffffff")
@@ -120,50 +209,9 @@ class MapPageState extends State<MapPage> {
                           ],
                         ))
                   ])
-                ])))),
-        body: Builder(
-          builder: (context) => Stack(
-            children: <Widget>[
-              Positioned.fill(
-                child: GoogleMap(
-                  key: _key,
-                  markers: {
-                    Marker(GeoCoord(34.0469058, -118.3503948)),
-                  },
-                  initialZoom: 12,
-                  initialPosition: GeoCoord(34.0469058, -118.3503948),
-                  // Los Angeles, CA
-                  mapType: MapType.roadmap,
-                  mapStyle: _mapStyle,
-                  interactive: true,
-                  onTap: (coord) {},
-                  mobilePreferences: const MobileMapPreferences(
-                    trafficEnabled: true,
-                    zoomControlsEnabled: true,
-                  ),
-                  webPreferences: WebMapPreferences(
-                    fullscreenControl: true,
-                    zoomControl: true,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 16,
-                left: 16,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  backgroundColor: _darkMapStyle ? Colors.black : Colors.white,
-                  child: Icon(
-                    Icons.menu,
-                    color: _darkMapStyle ? Colors.white : Colors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ));
+                ]))),
+        body:
+            Builder(builder: (context) => getMapWithOrWithoutIgnorePointer()));
   }
 }
 
