@@ -27,7 +27,7 @@ class Configuration extends InheritedWidget {
 
   /// Defaults
   final String foregroundColorWhite = '#ffffff';
-  final EdgeInsets marginTop10Bottom20 = const EdgeInsets.only(top:10, bottom:20);
+  final EdgeInsets marginLeft10Right10Top10Bottom40 = const EdgeInsets.only(top:10, left:10, right:10, bottom:40);
   final EdgeInsets marginTopN10Left50 = const EdgeInsets.only(top:-10, left:50);
   final EdgeInsets marginTop20 = const EdgeInsets.only(top:20.0);
   final EdgeInsets marginTop10 = const EdgeInsets.only(top:10.0);
@@ -44,8 +44,9 @@ class Configuration extends InheritedWidget {
   final EdgeInsets marginRight20 = const EdgeInsets.only(right:20);
   final EdgeInsets marginLeft20Right20 = const EdgeInsets.only(left:20, right:20);
   final EdgeInsets marginLeft40Right20Top20Bottom20 = const EdgeInsets.only(left:40, right:20, top:20, bottom:20);
-  final EdgeInsets marginLeft20Right20Top20 = const EdgeInsets.only(left:20, right:20, top:20);
+  final EdgeInsets marginLeft10Right10Top40 = const EdgeInsets.only(left:10, right:10, top:40);
   final EdgeInsets marginLeft10Right10 = const EdgeInsets.only(left:10, right:10);
   final EdgeInsets marginLeft20Top40Bottom40 = const EdgeInsets.only(left:20, top:40, bottom:40);
   final EdgeInsets marginLeft20Top20Bottom30 = const EdgeInsets.only(left:20, top:20, bottom:30);
+  final EdgeInsets marginLeft20Right20Top10 = const EdgeInsets.only(left:20, right:20, top:10);
 }
