@@ -11,9 +11,10 @@ class MapPageState extends State<MapPage> {
   bool _darkMapStyle = true;
   String _mapStyle = darkMapStyle;
 
-  Widget getMapWithOrWithoutIgnorePointer(BuildContext bc) {
-    print('isDrawerOpen = ' + Scaffold.of(bc).isDrawerOpen.toString());
-    if (Scaffold.of(bc).isDrawerOpen) {
+  Widget getMapWithOrWithoutIgnorePointer() {
+    print(
+        'isDrawerOpen = ' + _scaffoldKey.currentState.isDrawerOpen.toString());
+    if (_scaffoldKey.currentState.isDrawerOpen) {
       return IgnorePointer(
         child: GoogleMap(
           key: _key,
@@ -180,13 +181,15 @@ class MapPageState extends State<MapPage> {
             builder: (bc) => Stack(
                   children: <Widget>[
                     Positioned.fill(
-                        child: getMapWithOrWithoutIgnorePointer(context)),
+                        child: getMapWithOrWithoutIgnorePointer()),
                     Positioned(
                       top: 16,
                       left: 16,
                       child: FloatingActionButton(
                         onPressed: () {
-                          Scaffold.of(context).openDrawer();
+                          setState(() {
+                            Scaffold.of(bc).openDrawer();
+                          });
                         },
                         backgroundColor:
                             _darkMapStyle ? Colors.black : Colors.white,
