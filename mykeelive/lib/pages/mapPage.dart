@@ -11,9 +11,9 @@ class MapPageState extends State<MapPage> {
   bool _darkMapStyle = true;
   String _mapStyle = darkMapStyle;
 
-  Widget getMapWithOrWithoutIgnorePointer(BuildContext bc) {
-    print('isDrawerOpen = ' + Scaffold.of(bc).isDrawerOpen.toString());
-    if (Scaffold.of(bc).isDrawerOpen) {
+  Widget getMapWithOrWithoutIgnorePointer() {
+    print('isDrawerOpen = ' + _scaffoldKey.currentState.isDrawerOpen.toString());
+    if (_scaffoldKey.currentState.isDrawerOpen) {
       return IgnorePointer(
         child: Stack(
           children: <Widget>[
@@ -45,7 +45,7 @@ class MapPageState extends State<MapPage> {
               left: 16,
               child: FloatingActionButton(
                 onPressed: () {
-                  Scaffold.of(context).openDrawer();
+                  _scaffoldKey.currentState.openDrawer();
                 },
                 backgroundColor: _darkMapStyle ? Colors.black : Colors.white,
                 child: Icon(
@@ -88,7 +88,7 @@ class MapPageState extends State<MapPage> {
           left: 16,
           child: FloatingActionButton(
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              _scaffoldKey.currentState.openDrawer();
             },
             backgroundColor: _darkMapStyle ? Colors.black : Colors.white,
             child: Icon(
@@ -211,8 +211,9 @@ class MapPageState extends State<MapPage> {
                         ))
                   ])
                 ]))),
-        body: Builder(
-            builder: (context) => getMapWithOrWithoutIgnorePointer(context)));
+        body: Builder(builder: (bc) {
+          return getMapWithOrWithoutIgnorePointer();
+        }));
   }
 }
 
