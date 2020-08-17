@@ -4,7 +4,7 @@ import 'package:mykeelive/routes/routedApp.dart';
 import 'package:mykeelive/utilAndDataTypes/configuration.dart';
 
 void main() async {
-  GoogleMap.init('AIzaSyCvLSWY2KzHGNZHDqv_uF-u91ouRYMSvR0');
+  GoogleMap.init('AIzaSyAYEdXcl45F0Mmfx6kZs3ZGRwkRMA7f0hI');
   WidgetsFlutterBinding.ensureInitialized();
   var app = RoutedApp();
   runApp(Configuration(child:app));
